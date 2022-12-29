@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "shapely-stubs"
+version = "0.1.0"
+description = "Type annotations for Shapely"
+authors = ["Taku Fukada <naninunenor@gmail.com>"]
+license = "BSD 3-Clause"
+readme = "README.md"
+packages = [{include = "shapely-stubs"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = ">=1.14"
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
