@@ -1,13 +1,12 @@
-from _typeshed import Incomplete
+from typing import Any
+
 from shapely.geometry.base import BaseMultipartGeometry
 
 class MultiPolygon(BaseMultipartGeometry):
-    def __new__(self, polygons: Incomplete | None = ...): ...
-    @property
-    def __geo_interface__(self): ...
-    def svg(
+    def __new__(self, polygons: Any = ...): ...
+    def svg(  # type: ignore[override]
         self,
         scale_factor: float = ...,
-        fill_color: Incomplete | None = ...,
-        opacity: Incomplete | None = ...,
-    ): ...
+        fill_color: str | None = ...,
+        opacity: float | str | None = ...,
+    ) -> str: ...

@@ -1,49 +1,126 @@
-from _typeshed import Incomplete
+from typing import Literal, overload
+
+from shapely import GeometryType
+from shapely.geometry import (
+    GeometryCollection,
+    LinearRing,
+    LineString,
+    MultiLineString,
+    MultiPoint,
+    MultiPolygon,
+    Point,
+    Polygon,
+)
+from shapely.geometry.base import BaseGeometry
+
+from ._typing import (
+    _ArrayLikeFloat,
+    _ArrayLikeGeometry,
+    _ArrayLikeInt,
+    _NDArrayGeometry,
+)
 
 def points(
-    coords,
-    y: Incomplete | None = ...,
-    z: Incomplete | None = ...,
-    indices: Incomplete | None = ...,
-    out: Incomplete | None = ...,
+    coords: _ArrayLikeFloat,
+    y: _ArrayLikeFloat | None = ...,
+    z: _ArrayLikeFloat | None = ...,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
     **kwargs
-): ...
+) -> Point | _NDArrayGeometry: ...
 def linestrings(
-    coords,
-    y: Incomplete | None = ...,
-    z: Incomplete | None = ...,
-    indices: Incomplete | None = ...,
-    out: Incomplete | None = ...,
+    coords: _ArrayLikeFloat,
+    y: _ArrayLikeFloat | None = ...,
+    z: _ArrayLikeFloat | None = ...,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
     **kwargs
-): ...
+) -> LineString | _NDArrayGeometry: ...
 def linearrings(
-    coords,
-    y: Incomplete | None = ...,
-    z: Incomplete | None = ...,
-    indices: Incomplete | None = ...,
-    out: Incomplete | None = ...,
+    coords: _ArrayLikeFloat,
+    y: _ArrayLikeFloat | None = ...,
+    z: _ArrayLikeFloat | None = ...,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
     **kwargs
-): ...
+) -> LinearRing | _NDArrayGeometry: ...
 def polygons(
-    geometries,
-    holes: Incomplete | None = ...,
-    indices: Incomplete | None = ...,
-    out: Incomplete | None = ...,
+    geometries: _ArrayLikeGeometry | _ArrayLikeFloat | None,
+    holes: _ArrayLikeGeometry | _ArrayLikeFloat | None = ...,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
     **kwargs
-): ...
-def box(xmin, ymin, xmax, ymax, ccw: bool = ..., **kwargs): ...
+) -> Polygon | _NDArrayGeometry: ...
+@overload
+def box(
+    xmin: float, ymin: float, xmax: float, ymax: float, ccw: bool = ..., **kwargs
+) -> Polygon: ...
+@overload
+def box(
+    xmin: _ArrayLikeFloat,
+    ymin: float | _ArrayLikeFloat,
+    xmax: float | _ArrayLikeFloat,
+    ymax: float | _ArrayLikeFloat,
+    ccw: bool = ...,
+    **kwargs
+) -> _NDArrayGeometry: ...
+@overload
+def box(
+    xmin: float | _ArrayLikeFloat,
+    ymin: _ArrayLikeFloat,
+    xmax: float | _ArrayLikeFloat,
+    ymax: float | _ArrayLikeFloat,
+    ccw: bool = ...,
+    **kwargs
+) -> _NDArrayGeometry: ...
+@overload
+def box(
+    xmin: float | _ArrayLikeFloat,
+    ymin: float | _ArrayLikeFloat,
+    xmax: _ArrayLikeFloat,
+    ymax: float | _ArrayLikeFloat,
+    ccw: bool = ...,
+    **kwargs
+) -> _NDArrayGeometry: ...
+@overload
+def box(
+    xmin: float | _ArrayLikeFloat,
+    ymin: float | _ArrayLikeFloat,
+    xmax: float | _ArrayLikeFloat,
+    ymax: _ArrayLikeFloat,
+    ccw: bool = ...,
+    **kwargs
+) -> _NDArrayGeometry: ...
 def multipoints(
-    geometries, indices: Incomplete | None = ..., out: Incomplete | None = ..., **kwargs
-): ...
+    geometries: _ArrayLikeGeometry | _ArrayLikeFloat,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
+    **kwargs
+) -> MultiPoint | _NDArrayGeometry: ...
 def multilinestrings(
-    geometries, indices: Incomplete | None = ..., out: Incomplete | None = ..., **kwargs
-): ...
+    geometries: _ArrayLikeGeometry | _ArrayLikeFloat,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
+    **kwargs
+) -> MultiLineString | _NDArrayGeometry: ...
 def multipolygons(
-    geometries, indices: Incomplete | None = ..., out: Incomplete | None = ..., **kwargs
-): ...
+    geometries: _ArrayLikeGeometry | _ArrayLikeFloat,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
+    **kwargs
+) -> MultiPolygon | _NDArrayGeometry: ...
 def geometrycollections(
-    geometries, indices: Incomplete | None = ..., out: Incomplete | None = ..., **kwargs
-): ...
-def prepare(geometry, **kwargs) -> None: ...
-def destroy_prepared(geometry, **kwargs) -> None: ...
-def empty(shape, geom_type: Incomplete | None = ..., order: str = ...): ...
+    geometries: _ArrayLikeGeometry | _ArrayLikeFloat,
+    indices: _ArrayLikeInt | None = ...,
+    out: _NDArrayGeometry | None = ...,
+    **kwargs
+) -> GeometryCollection | _NDArrayGeometry: ...
+def prepare(geometry: BaseGeometry | _ArrayLikeGeometry | None, **kwargs) -> None: ...
+def destroy_prepared(
+    geometry: BaseGeometry | _ArrayLikeGeometry | None, **kwargs
+) -> None: ...
+def empty(
+    shape: int | _ArrayLikeInt,
+    geom_type: GeometryType | None = ...,
+    order: Literal["C", "F"] = ...,
+) -> _NDArrayGeometry: ...

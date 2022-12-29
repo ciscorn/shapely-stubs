@@ -1,26 +1,34 @@
-from _typeshed import Incomplete
+from typing import Literal
+
 from shapely.geometry.base import BaseGeometry
 
+from .._typing import _ArrayLikeFloat, _ArrayLikeGeometry
+from ..geometry import MultiLineString
+from ..geometry.base import JOIN_STYLE
+
 class LineString(BaseGeometry):
-    def __new__(self, coordinates: Incomplete | None = ...): ...
-    @property
-    def __geo_interface__(self): ...
-    def svg(
+    def __new__(
+        self,
+        coordinates: _ArrayLikeFloat | _ArrayLikeGeometry | LineString | None = ...,
+    ): ...
+    def svg(  # type: ignore[override]
         self,
         scale_factor: float = ...,
-        stroke_color: Incomplete | None = ...,
-        opacity: Incomplete | None = ...,
-    ): ...
-    @property
-    def xy(self): ...
+        stroke_color: str | None = ...,
+        opacity: float | str | None = ...,
+    ) -> str: ...
     def offset_curve(
-        self, distance, quad_segs: int = ..., join_style=..., mitre_limit: float = ...
-    ): ...
+        self,
+        distance: float,
+        quad_segs: int = ...,
+        join_style: JOIN_STYLE = ...,
+        mitre_limit: float = ...,
+    ) -> LineString | MultiLineString: ...
     def parallel_offset(
         self,
-        distance,
-        side: str = ...,
+        distance: float,
+        side: Literal["right", "left"] = ...,
         resolution: int = ...,
-        join_style=...,
+        join_style: JOIN_STYLE = ...,
         mitre_limit: float = ...,
     ): ...
