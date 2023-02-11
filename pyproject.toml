@@ -9,6 +9,11 @@ packages = [
     { include = "shapely-stubs" },
     { include = "shapely-stubs/**/*.pyi" },
 ]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
