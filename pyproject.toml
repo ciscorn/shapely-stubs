@@ -5,11 +5,15 @@ description = "Type annotations for Shapely"
 authors = ["Taku Fukada <naninunenor@gmail.com>"]
 license = "BSD 3-Clause"
 readme = "README.md"
-packages = [{include = "shapely-stubs"}]
+packages = [
+    { include = "shapely-stubs" },
+    { include = "shapely-stubs/**/*.pyi" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 numpy = ">=1.14"
+shapely = ">=2.0.0"
 
 [tool.isort]
 profile = "black"
